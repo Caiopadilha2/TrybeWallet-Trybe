@@ -34,12 +34,14 @@ class Login extends React.Component {
 
   clickBotaoLogin = () => {
     const { history, dispatch } = this.props;
+    // Com o connect, consigo acessar essas propriedades.
     const { email } = this.state;
 
     dispatch(userLogin(email));
+    // Fazer um dispatch na action userLogin. Ela pede um parâmetro, que é o email.
+    // O requisito pede para guardar no estado da aplicação só o email, pq vai ficar aparecendo no cabeçalho, provavelmente.
     history.push('/carteira');
-
-  }
+  };
 
   render() {
     const { botaoLoginDesabilitado, email, password } = this.state;
@@ -59,10 +61,24 @@ class Login extends React.Component {
           value={ password }
           onChange={ this.handleInputChange }
         />
-        <button type="button" disabled={ botaoLoginDesabilitado }>Entrar</button>
+        <button
+          type="button"
+          disabled={ botaoLoginDesabilitado }
+          onClick={ this.clickBotaoLogin }
+        >
+          Entrar
+        </button>
       </div>
     );
   }
 }
+
+// https://stackoverflow.com/questions/52109592/react-router-the-prop-history-is-undefined
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default connect()(Login);
