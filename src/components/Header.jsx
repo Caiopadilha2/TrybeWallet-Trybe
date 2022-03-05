@@ -21,8 +21,10 @@ const mapStateToProps = (state) => ({
 });
 // mapStateToProps é uma arrow que recebe o state (estado global). Tem que retornar um objeto.
 // Escolho as props que quero retornar. No caso, só o email. Aula 15.3 Cestari 55:00.
+// Vou renderizar lá no Wallet para aparecer o email da pessoa logada.
 
 export default connect(mapStateToProps)(Header);
+// mapStateToProps é para leitura
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
