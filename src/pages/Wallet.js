@@ -28,17 +28,21 @@ class Wallet extends React.Component {
           <option value="Saúde">Saúde</option>
         </select>
         <hr />
-
-        <p>Descrição</p>
-        <p>Tag</p>
-        <p>Método de pagamento</p>
-        <p>Valor</p>
-        <p>Moeda</p>
-        <p>Câmbio utilizado</p>
-        <p>Valor convertido</p>
-        <p>Moeda de conversão</p>
-        <p>Editar/Excluir</p>
-
+        <table>
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
+            </tr>
+          </thead>
+        </table>
       </div>
 
     );
