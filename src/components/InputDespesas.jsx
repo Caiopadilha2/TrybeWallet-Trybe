@@ -9,7 +9,7 @@ class InputDespesas extends React.Component {
     super();
 
     this.state = {
-      idInput: 0,
+      id: 0,
       valueInput: '',
       descriptionInput: '',
       currencyInput: 'USD',
@@ -37,7 +37,7 @@ class InputDespesas extends React.Component {
   }
 
   addExpensesButton = () => {
-    const { idInput,
+    const { id,
       valueInput,
       descriptionInput,
       currencyInput,
@@ -49,20 +49,21 @@ class InputDespesas extends React.Component {
     const { addDespesa } = this.props;
 
     addDespesa({
-      idInput,
-      valueInput,
-      descriptionInput,
-      currencyInput,
-      methodInput,
-      tagInput,
+      id,
+      value: valueInput,
+      description: descriptionInput,
+      currency: currencyInput,
+      method: methodInput,
+      tag: tagInput,
       exchangeRates,
     });
 
     // Zerar o estado para adicionar uma nova despesa
     this.setState((prev) => ({
-      idInput: prev.idInput + 1,
+      id: prev.id + 1,
       valueInput: '',
       descriptionInput: '',
+      currencyInput: 'USD',
     }));
   }
 
@@ -76,12 +77,12 @@ class InputDespesas extends React.Component {
 
     return (
       <form>
-        <label htmlFor="value-input">
+        <label htmlFor="valueInput">
           Valor:
           <input
             data-testid="value-input"
             type="number"
-            name="value-input"
+            name="valueInput"
             value={ valueInput }
             onChange={ this.handleChange }
           />
@@ -92,7 +93,7 @@ class InputDespesas extends React.Component {
           <input
             data-testid="description-input"
             type="text"
-            name="description-input"
+            name="descriptionInput"
             value={ descriptionInput }
             onChange={ this.handleChange }
           />
@@ -123,7 +124,7 @@ class InputDespesas extends React.Component {
           Método de pagamento:
           <select
             data-testid="method-input"
-            name="method-input"
+            name="methodInput"
             value={ methodInput }
             onChange={ this.handleChange }
           >
@@ -137,7 +138,7 @@ class InputDespesas extends React.Component {
           Tag:
           <select
             data-testid="tag-input"
-            name="tag-input"
+            name="tagInput"
             value={ tagInput }
             onChange={ this.handleChange }
           >
