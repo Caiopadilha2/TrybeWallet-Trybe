@@ -36,6 +36,14 @@ class InputDespesas extends React.Component {
     this.setState({ [name]: value });
   }
 
+  AtualizarCambioAposAddDespesa = async () => {
+    const exchangeRates = await getExchangeRates();
+    // Chamo de novo para pegar o câmbio da API novamente, pois ele virá com o valor atualizado (Fernando me falou que atualiza de 3 em 3 minutos).
+    // O teste roda 2 vezes, para testar justamente isso. Se, quando você adicionar outra despesa, ele está com o câmbio atualizado.
+    // Logo, não basta popular o select com as moedas, pois elas precisam estar com o valor atualizado, quando for adicionar a despesa.
+    this.setState({ exchangeRates });
+  }
+
   addExpensesButton = () => {
     const { id,
       valueInput,
@@ -65,6 +73,8 @@ class InputDespesas extends React.Component {
       descriptionInput: '',
       currencyInput: 'USD',
     }));
+
+    this.AtualizarCambioAposAddDespesa();
   }
 
   render() {
@@ -125,6 +135,7 @@ class InputDespesas extends React.Component {
           <select
             data-testid="method-input"
             name="methodInput"
+            id="method-input"
             value={ methodInput }
             onChange={ this.handleChange }
           >
@@ -139,6 +150,7 @@ class InputDespesas extends React.Component {
           <select
             data-testid="tag-input"
             name="tagInput"
+            id="tag-input"
             value={ tagInput }
             onChange={ this.handleChange }
           >
