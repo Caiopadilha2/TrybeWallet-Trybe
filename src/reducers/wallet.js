@@ -1,5 +1,5 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
-import { SAVE_EXPENSES } from '../actions';
+import { SAVE_EXPENSES, REMOVE_EXPENSES } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -12,7 +12,11 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, action.payload],
-      // Como é um array de objetos, tenho que dar spread no state.expenses. Ai adiciono o payload da action.
+    };
+  case REMOVE_EXPENSES:
+    return {
+      ...state,
+      expenses: state.expenses.filter(({ id }) => id !== action.payload),
     };
   default:
     return state;

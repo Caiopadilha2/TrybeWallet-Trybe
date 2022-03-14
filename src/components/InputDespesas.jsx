@@ -45,7 +45,8 @@ class InputDespesas extends React.Component {
   }
 
   addExpensesButton = () => {
-    const { id,
+    const {
+      id,
       valueInput,
       descriptionInput,
       currencyInput,

@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { removeExpensesAction } from '../actions';
 
 class TabelaDespesas extends React.Component {
   render() {
-    const { wallet: { expenses } } = this.props;
+    const { wallet: { expenses }, removeExpenses } = this.props;
 
     return (
       <div>
@@ -38,6 +39,15 @@ class TabelaDespesas extends React.Component {
                   {' '}
                 </td>
                 <td>Real</td>
+                <td>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => removeExpenses(expense.id) }
+                  >
+                    Excluir
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -51,6 +61,10 @@ const mapStateToProps = (state) => ({
   wallet: state.wallet,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  removeExpenses: (id) => dispatch(removeExpensesAction(id)),
+});
+
 TabelaDespesas.propTypes = {
   wallet: PropTypes.shape({
     expenses: PropTypes.arrayOf(PropTypes.object),
@@ -59,4 +73,4 @@ TabelaDespesas.propTypes = {
 
 // https://pt-br.reactjs.org/docs/typechecking-with-proptypes.html#proptypes
 
-export default connect(mapStateToProps)(TabelaDespesas);
+export default connect(mapStateToProps, mapDispatchToProps)(TabelaDespesas);
