@@ -24,6 +24,8 @@ class InputDespesas extends React.Component {
   async componentDidMount() {
     const exchangeRates = await getExchangeRates();
     const currencies = Object.keys(exchangeRates);
+    // console.log(exchangeRates);
+    // console.log(currencies);
     this.setState({
       currencies,
       exchangeRates,
@@ -54,7 +56,7 @@ class InputDespesas extends React.Component {
       tagInput,
       exchangeRates,
     } = this.state;
-    // Com o connect já consigo acessar as props aqui. Vou jogar lá no dispatch.
+    // Com o connect já consigo acessar as props aqui.
     const { addDespesa } = this.props;
 
     addDespesa({

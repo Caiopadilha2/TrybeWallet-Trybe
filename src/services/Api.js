@@ -4,7 +4,5 @@ const getExchangeRates = async () => {
   delete response.USDT;
   return response;
 };
-// Quero só as chaves do objeto response, que são as moedas.
-// https://javascript.info/keys-values-entries
 
 export default getExchangeRates;
